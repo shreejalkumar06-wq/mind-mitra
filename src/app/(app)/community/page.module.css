@@ -1,0 +1,39 @@
+.page { animation: fadeIn 0.4s var(--ease-out) both; }
+@keyframes fadeIn { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:translateY(0); } }
+.title { font-family: var(--font-display); font-size: 1.75rem; margin-bottom: 4px; }
+.sub { font-size: 14px; color: var(--text-tertiary); margin-bottom: 28px; }
+.section { margin-bottom: 32px; }
+.section h3 { font-size: 14px; font-weight: 600; margin-bottom: 12px; }
+
+/* Grid */
+.grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+.gridCard { display: flex; flex-direction: column; align-items: flex-start; gap: 4px; padding: 16px; background: var(--bg-elevated); border: 1px solid var(--border); border-radius: var(--radius-md); cursor: pointer; transition: all var(--duration-fast); text-align: left; width: 100%; font-family: var(--font-body); }
+.gridCard:hover { border-color: var(--border-hover); box-shadow: var(--shadow-sm); }
+.gridCard h4 { font-size: 13px; font-weight: 600; color: var(--text-primary); margin: 0; }
+.gridCard p { font-size: 12px; color: var(--text-tertiary); margin: 0; line-height: 1.4; }
+.gridIcon { font-size: 1.25rem; margin-bottom: 4px; }
+.gridFooter { display: flex; align-items: center; justify-content: space-between; width: 100%; margin-top: 8px; }
+.tag { display: inline-block; padding: 2px 8px; background: var(--accent-light); color: var(--accent); font-size: 10px; font-weight: 600; border-radius: var(--radius-full); }
+
+/* Back button */
+.backBtn { display: flex; align-items: center; gap: 6px; background: none; border: none; font-family: var(--font-body); font-size: 13px; font-weight: 500; color: var(--text-tertiary); cursor: pointer; padding: 0; margin-bottom: 20px; transition: color var(--duration-fast); }
+.backBtn:hover { color: var(--accent); }
+
+/* Circle Header */
+.circleHeader { display: flex; align-items: center; gap: 14px; margin-bottom: 24px; }
+.circleIconLg { font-size: 2rem; width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; background: var(--accent-light); border-radius: var(--radius-md); }
+
+/* Posts */
+.posts { display: flex; flex-direction: column; gap: 12px; }
+.postCard { padding: 16px 20px; background: var(--bg-elevated); border: 1px solid var(--border); border-radius: var(--radius-lg); }
+.postHeader { display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; }
+.postUser { font-size: 13px; font-weight: 600; color: var(--accent); }
+.postTime { font-size: 11px; color: var(--text-quaternary); }
+.postText { font-size: 13px; color: var(--text-primary); line-height: 1.6; margin-bottom: 12px; }
+.postActions { display: flex; gap: 12px; }
+.likeBtn, .replyBtn { display: flex; align-items: center; gap: 4px; background: none; border: none; font-family: var(--font-body); font-size: 12px; font-weight: 500; color: var(--text-tertiary); cursor: pointer; padding: 4px 8px; border-radius: var(--radius-sm); transition: all var(--duration-fast); }
+.likeBtn:hover { color: #e11d48; background: rgba(225, 29, 72, 0.06); }
+.replyBtn:hover { color: var(--accent); background: var(--accent-light); }
+.liked { color: #e11d48 !important; }
+
+@media (max-width: 640px) { .grid { grid-template-columns: 1fr; } }

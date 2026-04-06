@@ -1,0 +1,368 @@
+.dash {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  animation: fadeIn 0.4s var(--ease-out) both;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ---- Bento Grid ---- */
+.bento {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.affirmation {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 20px 24px;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  position: relative;
+  overflow: hidden;
+}
+
+.affirmation p {
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1.6;
+  color: var(--text-primary);
+  font-family: var(--font-display);
+}
+
+/* Score Card */
+.scoreCard {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 24px;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  transition: all var(--duration-base) var(--ease-out);
+}
+
+.scoreCard:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--border-hover);
+}
+
+.scoreRing {
+  position: relative;
+  width: 56px;
+  height: 56px;
+  flex-shrink: 0;
+}
+
+.scoreRing svg {
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+}
+
+.scoreNum {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text-primary);
+  font-feature-settings: 'tnum';
+}
+
+.scoreLabel {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 2px;
+}
+
+.scoreSub {
+  font-size: 12px;
+  color: var(--text-tertiary);
+}
+
+/* Streak Card */
+.streakCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  text-align: center;
+  transition: all var(--duration-base) var(--ease-out);
+}
+
+.streakCard:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--border-hover);
+}
+
+.streakNum {
+  font-size: 2.5rem;
+  font-family: var(--font-display);
+  font-weight: 400;
+  color: var(--accent);
+  line-height: 1;
+  margin-bottom: 4px;
+  font-feature-settings: 'tnum';
+}
+
+/* ---- Mood ---- */
+.moodCard {
+  padding: 24px;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+}
+
+.moodHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.moodHeader h3 {
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.moodCheck {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--success);
+}
+
+.moodRow {
+  display: flex;
+  gap: 10px;
+}
+
+.moodBtn {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 16px 8px;
+  background: var(--bg-primary); /* Use gray background to inset the button against the white card */
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all var(--duration-base) var(--ease-out);
+}
+
+.moodBtn:hover {
+  background: var(--bg-secondary);
+  border-color: var(--border-hover);
+}
+
+.moodActive {
+  background: var(--bg-elevated);
+  border-color: var(--mc) !important;
+  box-shadow: 0 4px 12px color-mix(in srgb, var(--mc) 15%, transparent);
+}
+
+.moodActive .moodIcon {
+  color: var(--mc);
+  transform: scale(1.1);
+}
+
+.moodIcon {
+  color: var(--text-tertiary);
+  transition: all var(--duration-fast) var(--ease-out);
+}
+
+.moodLabel {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  transition: color var(--duration-fast) var(--ease-out);
+}
+
+.moodActive .moodLabel {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+/* ---- Actions ---- */
+.actionsSection h3 {
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+
+.actionsGrid {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background: var(--bg-elevated);
+  box-shadow: var(--shadow-sm);
+}
+
+.actionCard {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 20px;
+  text-decoration: none;
+  transition: all var(--duration-base) var(--ease-out);
+  border-bottom: 1px solid var(--border);
+  cursor: pointer;
+}
+
+.actionCard:last-child {
+  border-bottom: none;
+}
+
+.actionCard:hover {
+  background: var(--bg-primary);
+}
+
+.actionIcon {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-sm);
+  flex-shrink: 0;
+}
+
+.icon_accent {
+  background: var(--accent-light);
+  color: var(--accent);
+}
+
+.icon_secondary {
+  background: var(--accent-secondary-light);
+  color: var(--accent-secondary);
+}
+
+.actionTitle {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 2px;
+}
+
+.actionSub {
+  font-size: 13px;
+  color: var(--text-tertiary);
+}
+
+.actionArrow {
+  margin-left: auto;
+  flex-shrink: 0;
+  color: var(--text-quaternary);
+  transition: transform var(--duration-fast) var(--ease-out);
+}
+
+.actionCard:hover .actionArrow {
+  transform: translateX(4px);
+  color: var(--text-secondary);
+}
+
+/* ---- Breathing ---- */
+.breathCard {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 24px 32px;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  transition: all var(--duration-base) var(--ease-out);
+  cursor: pointer;
+}
+
+.breathCard:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--border-hover);
+}
+
+.breathText h3 {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  margin-bottom: 6px;
+  color: var(--text-primary);
+}
+
+.breathText p {
+  font-size: 14px;
+  color: var(--text-secondary);
+  max-width: 320px;
+  line-height: 1.6;
+}
+
+.breathVisual {
+  position: relative;
+  width: 80px;
+  height: 80px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.breathRing {
+  position: absolute;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  border: 2px solid var(--accent);
+  opacity: 0.15;
+  animation: breathe 4s ease-in-out infinite;
+}
+
+.breathRing2 {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--accent);
+  opacity: 0.1;
+  animation: breathe 4s ease-in-out infinite 0.3s;
+}
+
+@keyframes breathe {
+  0%, 100% { transform: scale(0.8); opacity: 0.1; }
+  50% { transform: scale(1.15); opacity: 0.3; }
+}
+
+/* ---- Responsive ---- */
+@media (max-width: 640px) {
+  .bento { grid-template-columns: 1fr; }
+  .moodRow { gap: 8px; }
+  .moodBtn { padding: 12px 6px; }
+  .breathCard { flex-direction: column; text-align: center; padding: 24px; }
+  .breathText p { margin: 0 auto; }
+}

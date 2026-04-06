@@ -1,0 +1,32 @@
+.banner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 6px 16px;
+  background: var(--bg-secondary);
+  border-bottom: 1px solid var(--border);
+  font-size: 11px;
+  color: var(--text-tertiary);
+  flex-wrap: wrap;
+}
+
+.text { white-space: nowrap; }
+
+.link {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  color: var(--danger) !important;
+  font-weight: 600;
+  padding: 2px 8px;
+  background: var(--danger-light);
+  border-radius: var(--radius-full);
+  transition: background var(--duration-fast) var(--ease-out);
+  font-size: 11px;
+}
+
+.link:hover {
+  background: rgba(239, 68, 68, 0.12);
+  color: var(--danger) !important;
+}

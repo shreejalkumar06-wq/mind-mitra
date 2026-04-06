@@ -1,0 +1,33 @@
+.page { animation: fadeIn 0.4s var(--ease-out) both; }
+@keyframes fadeIn { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:translateY(0); } }
+.title { font-family: var(--font-display); font-size: 1.75rem; margin-bottom: 4px; }
+.sub { font-size: 14px; color: var(--text-tertiary); margin-bottom: 28px; }
+
+.section { margin-bottom: 32px; }
+.section h3 { font-size: 14px; font-weight: 600; margin-bottom: 12px; }
+
+.exerciseList { display: flex; flex-direction: column; border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; background: var(--bg-elevated); }
+.exerciseCard { display: flex; align-items: center; gap: 12px; padding: 16px; border: none; background: var(--bg-elevated); cursor: pointer; border-bottom: 1px solid var(--border); transition: background var(--duration-fast); text-align: left; width: 100%; }
+.exerciseCard:last-child { border-bottom: none; }
+.exerciseCard:hover { background: var(--bg-secondary); }
+.exIcon { width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; background: var(--accent-light); color: var(--accent); border-radius: var(--radius-sm); flex-shrink: 0; }
+.exName { font-size: 13px; font-weight: 600; color: var(--text-primary); }
+.exDesc { font-size: 12px; color: var(--text-tertiary); }
+.arrow { margin-left: auto; flex-shrink: 0; }
+
+.activeSession { display: flex; flex-direction: column; align-items: center; gap: 16px; padding: 48px 0; }
+.breathContainer { display: flex; align-items: center; justify-content: center; }
+.breathCircle { width: 180px; height: 180px; border-radius: 50%; border: 3px solid var(--accent); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; transition: transform 1s ease-in-out; }
+.breathCircle[data-phase="Breathe in"] { animation: grow 4s ease-in-out infinite; }
+.breathCircle[data-phase="Breathe out"] { animation: shrink 4s ease-in-out infinite; }
+@keyframes grow { 0% { transform: scale(0.85); } 50% { transform: scale(1.1); } 100% { transform: scale(0.85); } }
+@keyframes shrink { 0% { transform: scale(1.1); } 50% { transform: scale(0.85); } 100% { transform: scale(1.1); } }
+.phaseText { font-size: 14px; font-weight: 600; color: var(--accent); }
+.timerText { font-size: 2.5rem; font-weight: 700; color: var(--text-primary); font-feature-settings: 'tnum'; }
+.exerciseName { font-size: 15px; font-weight: 600; }
+.elapsed { font-size: 13px; color: var(--text-tertiary); font-feature-settings: 'tnum'; }
+
+.soundGrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); gap: 8px; }
+.soundCard { display: flex; flex-direction: column; align-items: center; gap: 6px; padding: 16px 8px; background: var(--bg-elevated); border: 1px solid var(--border); border-radius: var(--radius-md); color: var(--text-tertiary); font-size: 12px; font-weight: 500; cursor: pointer; transition: all var(--duration-fast); }
+.soundCard:hover { border-color: var(--border-hover); color: var(--text-primary); }
+.comingSoon { font-size: 11px; color: var(--text-quaternary); margin-top: 8px; font-style: italic; }

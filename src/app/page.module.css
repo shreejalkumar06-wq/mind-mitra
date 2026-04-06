@@ -1,0 +1,695 @@
+/* ============================================
+   Landing Page — Apple × Linear × Finpay
+   ============================================ */
+
+.page {
+  min-height: 100vh;
+  background: transparent;
+  overflow-x: hidden;
+}
+
+/* ---- Crisis Strip ---- */
+.crisisStrip {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 8px 16px;
+  background: var(--bg-elevated);
+  border-bottom: 1px solid var(--border);
+  font-size: 12px;
+  color: var(--text-tertiary);
+}
+
+.crisisLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-weight: 600;
+  color: var(--danger) !important;
+  padding: 3px 10px;
+  background: var(--danger-light);
+  border-radius: var(--radius-full);
+  font-size: 12px;
+}
+
+.crisisLink:hover {
+  background: rgba(239, 68, 68, 0.12);
+  color: var(--danger) !important;
+}
+
+/* ---- Nav ---- */
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: var(--z-sticky);
+  background: rgba(245, 243, 240, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+}
+
+[data-theme="dark"] .nav {
+  background: rgba(19, 18, 16, 0.85);
+}
+
+.navInner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 var(--content-padding);
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-body);
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  letter-spacing: -0.02em;
+}
+
+.navLinks {
+  display: flex;
+  gap: 32px;
+}
+
+.navLink {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-secondary) !important;
+  transition: color var(--duration-fast) var(--ease-out);
+}
+
+.navLink:hover {
+  color: var(--text-primary) !important;
+}
+
+.navActions {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+/* ---- Hero ---- */
+.hero {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 80px var(--content-padding) 48px;
+}
+
+.heroGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: center;
+}
+
+/* Hero Copy */
+.heroCopy {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+@keyframes fadeSlideUp {
+  0% { opacity: 0; transform: translateY(24px) scale(0.96); }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.heroCopy > * {
+  animation: fadeSlideUp 0.8s cubic-bezier(0.2, 1.2, 0.3, 1) both;
+}
+
+.heroBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 12px;
+  background: var(--accent-light);
+  color: var(--accent);
+  font-size: 12px;
+  font-weight: 600;
+  border-radius: var(--radius-full);
+  margin-bottom: 24px;
+  width: fit-content;
+  letter-spacing: 0.02em;
+  animation-delay: 0.1s;
+}
+
+.heroCopy h1 {
+  margin-bottom: 20px;
+  animation-delay: 0.2s;
+}
+
+.heroAccent {
+  color: var(--accent);
+  font-style: italic;
+}
+
+.heroSub {
+  font-size: 16px;
+  line-height: 1.7;
+  color: var(--text-secondary);
+  margin-bottom: 32px;
+  max-width: 440px;
+  animation-delay: 0.3s;
+}
+
+.heroCtas {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  animation-delay: 0.4s;
+}
+
+.heroNote {
+  margin-top: 14px;
+  font-size: 12px;
+  color: var(--text-quaternary);
+  animation-delay: 0.5s;
+}
+
+/* Hero Visual — Floating Card Composition */
+.heroVisual {
+  position: relative;
+  height: 440px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Diagonal chevron pattern — Finpay-inspired */
+.heroPattern {
+  position: absolute;
+  inset: -20px;
+  background-image:
+    repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 28px,
+      var(--accent-subtle) 28px,
+      var(--accent-subtle) 30px
+    );
+  border-radius: var(--radius-2xl);
+  opacity: 0.6;
+}
+
+/* Parallax Wrappers for Scroll Effect */
+.parallaxWrapper {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: translateY(calc(var(--scroll-y, 0px) * var(--speed, 0)));
+  will-change: transform;
+  pointer-events: none;
+}
+
+.parallaxWrapper > * {
+  pointer-events: auto;
+}
+
+/* Main Floating Card */
+.cardMain {
+  position: relative;
+  z-index: 3;
+  width: 280px;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  padding: 24px;
+  box-shadow: var(--shadow-xl);
+  animation: floatUp 0.9s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+  animation-delay: 0.1s;
+}
+
+@keyframes floatUp {
+  0% { opacity: 0; transform: translateY(30px) scale(0.9); }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.cardMainHeader {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--divider);
+}
+
+.cardMainAvatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--accent-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.cardMainName {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.cardMainSub {
+  font-size: 11px;
+  color: var(--text-tertiary);
+}
+
+.cardMainBody {
+  display: flex;
+  flex-direction: column;
+}
+
+.cardMainLabel {
+  font-size: 11px;
+  color: var(--text-tertiary);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-weight: 500;
+  margin-bottom: 2px;
+}
+
+.cardMainValue {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: -0.03em;
+  line-height: 1;
+  font-feature-settings: 'tnum';
+}
+
+.cardMainValue span {
+  font-size: 1rem;
+  font-weight: 400;
+  color: var(--text-quaternary);
+}
+
+.cardMainDate {
+  font-size: 12px;
+  color: var(--text-tertiary);
+  margin-top: 4px;
+}
+
+/* Floating Card 1 — Mood Pills */
+.cardFloat1 {
+  position: absolute;
+  top: 24px;
+  right: -10px;
+  z-index: 4;
+  display: flex;
+  gap: 6px;
+  padding: 10px 14px;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  animation: floatUp 0.9s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+  animation-delay: 0.3s;
+}
+
+.moodPill {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 5px 10px;
+  background: var(--bg-secondary);
+  border-radius: var(--radius-full);
+  font-size: 12px;
+}
+
+.moodPillText {
+  font-weight: 500;
+  color: var(--text-secondary);
+}
+
+/* Floating Card 2 — Streak */
+.cardFloat2 {
+  position: absolute;
+  bottom: 40px;
+  right: 0;
+  z-index: 4;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 20px;
+  background: var(--accent);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 8px 24px rgba(13, 148, 136, 0.3);
+  animation: floatUp 0.9s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+  animation-delay: 0.5s;
+}
+
+.streakIcon {
+  width: 28px;
+  height: 28px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.streakIcon svg {
+  stroke: #fff;
+}
+
+.streakNum {
+  font-size: 15px;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: -0.01em;
+}
+
+.streakLabel {
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* ---- Social Proof ---- */
+.proof {
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  background: var(--bg-elevated);
+}
+
+.proofInner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 32px var(--content-padding);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.proofLabel {
+  font-size: 13px;
+  color: var(--text-tertiary);
+  font-weight: 500;
+}
+
+.proofStats {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.proofStat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
+.proofStat strong {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: -0.01em;
+}
+
+.proofStat span {
+  font-size: 11px;
+  color: var(--text-tertiary);
+}
+
+.proofDot {
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: var(--text-quaternary);
+}
+
+/* ---- Features ---- */
+.features {
+  padding: 96px 0;
+}
+
+.featuresInner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 var(--content-padding);
+}
+
+.sectionHead {
+  text-align: center;
+  margin-bottom: 56px;
+}
+
+.sectionTag {
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--accent);
+  margin-bottom: 12px;
+}
+
+.sectionHead h2 {
+  margin-bottom: 12px;
+}
+
+.sectionHead p {
+  color: var(--text-tertiary);
+  font-size: 15px;
+  margin: 0 auto;
+}
+
+.featureGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+}
+
+.featureCard {
+  padding: 32px 28px;
+  background: var(--bg-elevated);
+  transition: all var(--duration-base) var(--ease-out);
+  position: relative;
+}
+
+.featureCard:hover {
+  transform: translateY(-4px);
+  z-index: 10;
+  box-shadow: var(--shadow-lg);
+  border-radius: var(--radius-lg);
+  background: var(--bg-elevated);
+}
+
+.featureIcon {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--accent-light);
+  color: var(--accent);
+  border-radius: var(--radius-sm);
+  margin-bottom: 16px;
+}
+
+.featureCard h4 {
+  margin-bottom: 6px;
+  font-size: 14px;
+}
+
+.featureCard p {
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--text-tertiary);
+}
+
+/* ---- Stories ---- */
+.stories {
+  padding: 96px 0;
+  background: var(--bg-secondary);
+}
+
+.storiesInner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 var(--content-padding);
+}
+
+.storyGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.storyCard {
+  padding: 28px;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  transition: all var(--duration-base) var(--ease-out);
+}
+
+.storyCard:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+
+.storyText {
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--text-primary);
+  flex: 1;
+}
+
+.storyAuthor {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--text-tertiary);
+  font-weight: 500;
+}
+
+.storyDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* ---- CTA ---- */
+.cta {
+  padding: 96px 0;
+  text-align: center;
+}
+
+.ctaInner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 var(--content-padding);
+}
+
+.cta p {
+  margin: 8px auto 0;
+  font-size: 15px;
+}
+
+/* ---- Footer ---- */
+.footer {
+  border-top: 1px solid var(--border);
+  padding: 40px 0 24px;
+}
+
+.footerInner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 var(--content-padding);
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 32px;
+  margin-bottom: 24px;
+}
+
+.footerBrand p {
+  margin-top: 6px;
+  font-size: 13px;
+  color: var(--text-tertiary);
+}
+
+.footerLinks {
+  display: flex;
+  gap: 24px;
+}
+
+.footerLinks a {
+  font-size: 13px;
+  color: var(--text-tertiary);
+}
+
+.footerLinks a:hover {
+  color: var(--text-primary);
+}
+
+.footerBottom {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 16px var(--content-padding) 0;
+  border-top: 1px solid var(--border);
+}
+
+.footerBottom p {
+  font-size: 12px;
+  color: var(--text-quaternary);
+}
+
+/* ---- Responsive ---- */
+@media (max-width: 1024px) {
+  .heroGrid {
+    gap: 40px;
+  }
+  .heroVisual { height: 380px; }
+}
+
+@media (max-width: 768px) {
+  .heroGrid {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+
+  .heroVisual {
+    height: 340px;
+    order: -1;
+  }
+
+  .featureGrid, .storyGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .navLinks { display: none; }
+
+  .proofInner {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .features, .stories, .cta {
+    padding: 64px 0;
+  }
+
+  .footerInner {
+    flex-direction: column;
+  }
+
+  .hero {
+    padding: 48px var(--content-padding) 32px;
+  }
+}
+
+@media (max-width: 480px) {
+  .heroCtas {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .heroCtas .btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .cardFloat1 { display: none; }
+}
