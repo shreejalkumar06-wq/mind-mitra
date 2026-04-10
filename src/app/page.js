@@ -214,19 +214,7 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* Social Proof */}
-      <section className={styles.proof}>
-        <div className={styles.proofInner}>
-          <p className={styles.proofLabel}>Trusted by thousands finding their path to wellness</p>
-          <div className={styles.proofStats}>
-            <div className={styles.proofStat}><strong>24k+</strong><span>Anonymous Users</span></div>
-            <div className={styles.proofDot} />
-            <div className={styles.proofStat}><strong>180k+</strong><span>Moods Logged</span></div>
-            <div className={styles.proofDot} />
-            <div className={styles.proofStat}><strong>4.9★</strong><span>Community Rating</span></div>
-          </div>
-        </div>
-      </section>
+
 
       {/* Features */}
       <section className={styles.features} id="features">
