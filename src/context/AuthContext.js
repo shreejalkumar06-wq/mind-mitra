@@ -1,6 +1,7 @@
 'use client';
 
-import { createContext, useContext, useState, useEffect } from 'react';
+import { createContext, useCallback, useContext, useEffect, useState } from 'react';
+import { apiRequest } from '@/lib/api';
 
 const AuthContext = createContext();
 
@@ -15,12 +16,15 @@ const AVATARS = [
 function generateAlias() {
   const adj = ADJECTIVES[Math.floor(Math.random() * ADJECTIVES.length)];
   const noun = NOUNS[Math.floor(Math.random() * NOUNS.length)];
-  const num = Math.floor(Math.random() * 99) + 1;
-  return `${adj} ${noun} ${num}`;
+  return `${adj} ${noun}`;
 }
 
 function getRandomAvatar() {
   return AVATARS[Math.floor(Math.random() * AVATARS.length)];
+}
+
+function persistUser(user) {
+  localStorage.setItem('mindmitra-user', JSON.stringify(user));
 }
 
 export function AuthProvider({ children }) {
@@ -28,47 +32,81 @@ export function AuthProvider({ children }) {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const saved = localStorage.getItem('mindmitra-user');
-    if (saved) {
+    const restoreUser = async () => {
+      const saved = localStorage.getItem('mindmitra-user');
+
+      if (!saved) {
+        setLoading(false);
+        return;
+      }
+
       try {
-        setUser(JSON.parse(saved));
+        const parsed = JSON.parse(saved);
+        setUser(parsed);
+
+        if (parsed?.id) {
+          const { user: freshUser } = await apiRequest(`/users/${parsed.id}/summary`);
+          const normalized = {
+            id: freshUser.id,
+            displayName: freshUser.displayName,
+            avatarUrl: freshUser.avatarUrl,
+            createdAt: freshUser.createdAt,
+            streakCount: freshUser.streakCount,
+            wellnessScore: freshUser.wellnessScore,
+            isAnonymous: true,
+          };
+          setUser(normalized);
+          persistUser(normalized);
+        }
       } catch {
         localStorage.removeItem('mindmitra-user');
+        setUser(null);
+      } finally {
+        setLoading(false);
       }
-    }
-    setLoading(false);
+    };
+
+    restoreUser();
   }, []);
 
-  const loginAnonymous = (customAlias, customAvatar) => {
-    const newUser = {
-      id: crypto.randomUUID(),
-      displayName: customAlias || generateAlias(),
-      avatarUrl: customAvatar || getRandomAvatar(),
-      isAnonymous: true,
-      createdAt: new Date().toISOString(),
-    };
-    setUser(newUser);
-    localStorage.setItem('mindmitra-user', JSON.stringify(newUser));
-    return newUser;
-  };
+  const loginAnonymous = useCallback(async (customAlias, customAvatar) => {
+    const response = await apiRequest('/users/anonymous', {
+      method: 'POST',
+      body: JSON.stringify({
+        displayName: customAlias || generateAlias(),
+        avatarUrl: customAvatar || getRandomAvatar(),
+      }),
+    });
 
-  const logout = () => {
+    const newUser = {
+      ...response.user,
+      isAnonymous: true,
+    };
+
+    setUser(newUser);
+    persistUser(newUser);
+    return newUser;
+  }, []);
+
+  const logout = useCallback(() => {
     setUser(null);
     localStorage.removeItem('mindmitra-user');
-  };
+  }, []);
 
-  const updateUser = (updates) => {
-    const updated = { ...user, ...updates };
-    setUser(updated);
-    localStorage.setItem('mindmitra-user', JSON.stringify(updated));
-  };
+  const updateUser = useCallback((updates) => {
+    setUser((currentUser) => {
+      const updated = { ...currentUser, ...updates };
+      persistUser(updated);
+      return updated;
+    });
+  }, []);
 
-  const shuffleIdentity = () => {
+  const shuffleIdentity = useCallback(() => {
     return {
       displayName: generateAlias(),
       avatarUrl: getRandomAvatar(),
     };
-  };
+  }, []);
 
   return (
     <AuthContext.Provider value={{
@@ -79,7 +117,8 @@ export function AuthProvider({ children }) {
       updateUser,
       shuffleIdentity,
       isAuthenticated: !!user,
-    }}>
+    }}
+    >
       {children}
     </AuthContext.Provider>
   );

@@ -1,0 +1,22 @@
+services:
+  - type: web
+    name: mindmitra-backend
+    runtime: node
+    rootDir: backend
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /api/health
+    autoDeploy: true
+    envVars:
+      - key: NODE_VERSION
+        value: 22
+      - key: PORT
+        value: 4000
+      - key: SOCKET_PATH
+        value: /socket.io
+      - key: SUPABASE_URL
+        sync: false
+      - key: SUPABASE_SERVICE_ROLE_KEY
+        sync: false
+      - key: FRONTEND_URLS
+        sync: false
